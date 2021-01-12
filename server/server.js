@@ -11,32 +11,32 @@ const db = low(adapter);
 server.use(middlewares);
 
 // APIs
-// Get carousel data
+// Get carousel images.
 server.get('/carousel', (req, res) => {
     res.send(db.get('carousel').value());
 })
 
-// Get first banner image
+// Get the first banner image.
 server.get('/banner', (req, res) => {
     res.send(db.get('banner').value())
 })
 
-// Get banner carousel image
+// Get the banner-carousel images.
 server.get('/banner-carousel', (req, res) => {
     res.send(db.get('banner-carousel').value())
 })
 
-// Get first five items
+// Get first five items,
 server.get('/items', (req, res) => {
     res.send(db.get('items').take(5).value());
 })
 
-// Get item numbers
+// Get an item number.
 server.get('/items/number', (req, res) => {
     res.send(db.get('items').size().value())
 })
 
-// Get five items from startindex
+// Get five items from startindex.
 server.get('/items/more/*', (req, res) => {
     const startIdx = req.params[0]
     const resData = [];
@@ -47,8 +47,8 @@ server.get('/items/more/*', (req, res) => {
     res.send({data: resData});
 })
 
-// Get thumbnails
-server.get('/items/thumbnail/*', (req, res) => {
+// Get an item image.
+server.get('/items/image/*', (req, res) => {
     const idx = req.params[0];
     res.send(db.get(`items[${idx}]['href']`).value())
 })
