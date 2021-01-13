@@ -28,7 +28,7 @@ server.get('/banner-carousel', (req, res) => {
 
 // Get first five items,
 server.get('/items', (req, res) => {
-    res.send(db.get('items').take(5).value());
+    res.send({data: db.get('items').take(5).value()});
 })
 
 // Get an item number.
@@ -41,7 +41,6 @@ server.get('/items/more/*', (req, res) => {
     const startIdx = req.params[0]
     const resData = [];
     for (let i = 0; i < 5; i++) {
-        console.log(Number(startIdx) + i)
         resData.push(db.get(`items[${Number(startIdx) + i}]`).value());
     }
     res.send({data: resData});
