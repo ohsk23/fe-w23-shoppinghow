@@ -23,7 +23,7 @@ const API_URL = 'http://localhost:5000'; // temp
     function getCarouselData() {
         const url = 'carousel';
         return _get(url).then(res => {
-            console.log(res.json());
+            return res.json();
         });
     }
 
@@ -33,7 +33,7 @@ const API_URL = 'http://localhost:5000'; // temp
     function getBannerData() {
         const url = 'banner';
         return _get(url).then(res => {
-            console.log(res.json());
+            return res.json();
         });
     }
 
@@ -53,7 +53,7 @@ const API_URL = 'http://localhost:5000'; // temp
     function getItems() {
         const url = 'items';
         return _get(url).then(res => {
-            console.log(res.json());
+            return res.json();
         });       
     }
 
@@ -72,9 +72,9 @@ const API_URL = 'http://localhost:5000'; // temp
      * @param {Number} startIdx 
      */
     function getMoreItems (startIdx) {
-        const url = `/items/more/${startIdx}`;
+        const url = `items/more/${startIdx}`;
         return _get(url).then(res => {
-            console.log(res.json());
+            return res.json();
         });
     }
 
@@ -83,7 +83,7 @@ const API_URL = 'http://localhost:5000'; // temp
      * @param {Number} idx 
      */
     function getItemImg(idx) {
-        const url = `/items/image/${idx}`;
+        const url = `items/image/${idx}`;
         return _get(url).then(res => {
             console.log(res.json());
         });
@@ -91,6 +91,7 @@ const API_URL = 'http://localhost:5000'; // temp
 
     API.getItems = getItems;
     API.getCarouselData = getCarouselData;
+    API.getBannerData = getBannerData;
     API.getItemNum = getItemNum;
     API.getMoreItems = getMoreItems;
     API.getItemImg = getItemImg;

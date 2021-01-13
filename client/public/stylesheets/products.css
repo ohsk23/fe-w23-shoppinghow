@@ -1,0 +1,15 @@
+.products {
+    display: flex;
+    flex-wrap: wrap;
+}
+.more-button {
+    background-color: #e9e9e9;
+    height: 50px;
+    text-align: center;
+    border: 1px solid #f1f1f1;
+}
+.more-button > div {
+    font-size: 16px;
+    color: #333;
+    padding-top: 17px;
+}
