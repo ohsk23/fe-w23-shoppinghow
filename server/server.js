@@ -23,7 +23,7 @@ server.get('/banner', (req, res) => {
 
 // Get the banner-carousel images.
 server.get('/banner-carousel', (req, res) => {
-    res.send(db.get('banner-carousel').value())
+    res.send({data: db.get('banner-carousel').value()})
 })
 
 // Get first five items,

@@ -1,10 +1,11 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <link rel="stylesheet" type="text/css" href="stylesheets/normalize.css">
-    <link rel="stylesheet" type="text/css" href="stylesheets/index.css">
-    <link rel="stylesheet" type="text/css" href="stylesheets/card.css">
-    <link rel="stylesheet" type="text/css" href="stylesheets/products.css">
+    <link rel="stylesheet" type="text/css" href="css/normalize.css">
+    <link rel="stylesheet" type="text/css" href="css/index.css">
+    <link rel="stylesheet" type="text/css" href="css/card.css">
+    <link rel="stylesheet" type="text/css" href="css/slideshow.css">
+    <link rel="stylesheet" type="text/css" href="css/products.css">
 </head>
 <body>
     <header class="header">
@@ -40,7 +41,6 @@
                     <div>최근본 상품</div>
                     <div>▼</div>
                     <div class="main-navbar__recent-products__popup-view">
-                        <!-- 최근 본 상품이 없습니다. -->
                     </div>
                 </div>
             </div>
@@ -51,30 +51,27 @@
             <div class="banner__panel">
                 <img src="//shop1.daumcdn.net/shophow/sib/0_210107175444_NYJcyPtwHStBMzGLVzNvoNaaQaIJdBsr">
             </div>
-            <div class="banner__panel__slideshow">
-                <div class="slide">
-                    <img src="//shop1.daumcdn.net/shophow/sib/0_210104155806_bdDtOdkNBygzfeWOnQwgbcKKPdgvmwyQ">
-
+            <div class="banner__panel__slideshow slideshow">
+                <div class="group visible">
+                    <div class="slide">2</div>
+                    <div class="slide">0</div>
+                    <div class="slide">1</div>
                 </div>
-                <img class="banner__panel__slideshow__left-icon left-icon" src="images/left-arrow.png"></img>
-                <img class="banner__panel__slideshow__right-icon right-icon" src="images/right-arrow.png"></img>
+                <div class="group non-visible">
+                    <div class="slide"></div>
+                    <div class="slide"></div>
+                    <div class="slide"></div>
+                </div>
+                <div class="next-button">
+                    <img class="banner__panel__slideshow__left-icon left-icon" src="images/left-arrow.png"></img>
+                </div>
+                <div>
+                    <img class="banner__panel__slideshow__right-icon right-icon" src="images/right-arrow.png"></img>
+                </div>
             </div>
         </div>
         <div class="panel">
-            <div class="products">
-                <div class="card">
-                    <img class="card__image" src="//shop1.daumcdn.net/thumb/S318x318/?fname=http%3A%2F%2Fshop1.daumcdn.net%2Fshophow%2Fp%2FK11009405203.jpg%3Fut%3D20201104061159&amp;scode=talkgift">
-                    <div class="card__title">
-                        치즈의 무궁무진한 세계!
-                    </div>
-                    <div class="card__subtitle">
-                        다양한 종류의 치즈를 한눈에
-                    </div>
-                    <div class="card__badge">
-                        <img src="images/thema-icon.png">
-                    </div>
-                </div>
-            </div>
+            <div class="products"></div>
             <div class="more-button">
                 <div>
                     더보기(123건) ▼
@@ -85,6 +82,7 @@
     <div class="title">지금뜨는 테마 카테고리</div>
     <div class="container container__slideshow slideshow">
         <div class="panel__card-slideshow">
+            
             <div class="card">
                 <img class="card__image" src="//shop1.daumcdn.net/thumb/S318x318/?fname=http%3A%2F%2Fshop1.daumcdn.net%2Fshophow%2Fp%2FK11009405203.jpg%3Fut%3D20201104061159&amp;scode=talkgift">
                 <div class="card__title">
@@ -146,10 +144,13 @@
                 </div>
             </div>
         </div>
+        <a class="trand-prev" id="trandPrev">&#10094;</a>
+        <a class="trand-next" id="trandNext">&#10095;</a>
     </div>
     <script type="text/javascript" src="utils/api.js"></script>
     <script type="text/javascript" src="utils/querySelector.js"></script>
     <script type="text/javascript" src="js/card.js"></script>
+    <script type="text/javascript" src="js/slideshow.js"></script>
     <script type="text/javascript" src="js/products.js"></script>
 </body>
 </html>
