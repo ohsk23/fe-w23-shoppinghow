@@ -20,7 +20,7 @@ const API_URL = 'http://localhost:5000'; // temp
     /**
      * Get carousel images.
      */
-    function getCarouselData() {
+    function getCarouselImages() {
         const url = 'carousel';
         return _get(url).then(res => {
             return res.json();
@@ -40,10 +40,10 @@ const API_URL = 'http://localhost:5000'; // temp
     /**
      * Get the banner-carousel images.
      */
-    function getCarouselData() {
+    function getBannerCarouselData() {
         const url = 'banner-carousel';
         return _get(url).then(res => {
-            console.log(res.json());
+            return res.json();
         });
     }
     
@@ -89,9 +89,10 @@ const API_URL = 'http://localhost:5000'; // temp
         });
     }
 
-    API.getItems = getItems;
-    API.getCarouselData = getCarouselData;
+    API.getCarouselImages = getCarouselImages;
     API.getBannerData = getBannerData;
+    API.getBannerCarouselData = getBannerCarouselData;
+    API.getItems = getItems;
     API.getItemNum = getItemNum;
     API.getMoreItems = getMoreItems;
     API.getItemImg = getItemImg;

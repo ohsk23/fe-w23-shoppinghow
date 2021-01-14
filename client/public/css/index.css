@@ -106,16 +106,7 @@ header {
     width: 484px;
     margin: 0 14px;
 }
-.banner__panel__slideshow {
-    position: relative;
-    border-left: 1px solid #f1f1f1;
-    width: 764px;
-    
-}
-.banner__panel__slideshow > .slide > img {
-    display: block;
-    margin: auto;
-}
+
 .main-navbar ul > li {
     padding: 0 19px;
 }
