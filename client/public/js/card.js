@@ -1,7 +1,7 @@
 const Card = {};
 (function() {
-    Card.render = ({href, title, subtitle, badge}) => {
-        return `<div class="card">
+    Card.render = ({href, title, subtitle, badge}, id) => {
+        return `<div class="card" id="${id}">
         <img class="card__image" src="${href}">
         <div class="card__title">
             ${title}

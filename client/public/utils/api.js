@@ -85,7 +85,7 @@ const API_URL = 'http://localhost:5000'; // temp
     function getItemImg(idx) {
         const url = `items/image/${idx}`;
         return _get(url).then(res => {
-            console.log(res.json());
+            return res.json();
         });
     }
 
