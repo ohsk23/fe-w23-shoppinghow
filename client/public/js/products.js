@@ -1,6 +1,9 @@
-class Products {
-    startIdx = 0
+import API from '../utils/api.js';
+import * as Card from './card.js';
+
+export class Products {
     constructor() {
+        this.startIdx = 0
         this.htmlElement = q.querySelector('.products');
         this.button = q.querySelector('.more-button');
         this.getProducts();
@@ -16,7 +19,7 @@ class Products {
         API.getMoreItems(this.startIdx).then((res)=> {
             const innerHtml = res.data.reduce((acc, item) => {
                 count ++;
-                return acc + Card.render(item, 'card-' + (this.startIdx + count).toString());
+                return acc + Card.getCardTemplate(item, 'card-' + (this.startIdx + count).toString());
             }, '')
             this.htmlElement.innerHTML = String(this.htmlElement.innerHTML) + innerHtml;
         });
@@ -26,7 +29,7 @@ class Products {
             let count = 0;
             const innerHtml = res.data.reduce((acc, item) => {
                 count ++;
-                return acc + Card.render(item, 'card-' + count.toString());
+                return acc + Card.getCardTemplate(item, 'card-' + count.toString());
             }, '')
             this.htmlElement.innerHTML = innerHtml;
         });
@@ -51,5 +54,3 @@ class Products {
     }
 
 };
-
-const products = new Products();
