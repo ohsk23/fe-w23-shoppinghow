@@ -1,6 +1,4 @@
-const Card = {};
-(function() {
-    Card.render = ({href, title, subtitle, badge}, id) => {
+export function getCardTemplate ({href, title, subtitle, badge}, id) {
         return `<div class="card" id="${id}">
         <img class="card__image" src="${href}">
         <div class="card__title">
@@ -13,5 +11,4 @@ const Card = {};
             ${(badge === '테마' ? `<img src="images/thema-icon.png">`: badge)}
         </div>
     </div>`
-    }
-})()
+}
