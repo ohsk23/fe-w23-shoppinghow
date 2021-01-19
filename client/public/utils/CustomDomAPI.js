@@ -1,5 +1,3 @@
-const CustomDomAPI = {}
-
 function initDomAPI () {
     /**
      * Custom querySelector function.
@@ -43,5 +41,5 @@ function initDomAPI () {
     return {querySelector, querySelectorAll};
 }
 
-
-export default CustomDomAPI = initDomAPI();
+const CustomDomAPI = initDomAPI();
+export default CustomDomAPI;

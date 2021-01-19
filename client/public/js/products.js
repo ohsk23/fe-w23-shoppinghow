@@ -1,16 +1,19 @@
 import API from '../utils/api.js';
+import CustomDomAPI from '../utils/CustomDomAPI.js';
 import * as Card from './card.js';
 
-export class Products {
+class Products {
     constructor() {
         this.startIdx = 0
-        this.htmlElement = q.querySelector('.products');
-        this.button = q.querySelector('.more-button');
+        this.htmlElement = CustomDomAPI.querySelector('.products');
+        this.button = CustomDomAPI.querySelector('.more-button');
+        this.onClickMoreButton = this.onClickMoreButton.bind(this);
+        this.getMoreProducts = this.getMoreProducts.bind(this);
         this.getProducts();
         this.htmlElement.addEventListener('click', (e) => {
             this.onClickElement(e.target);
         })
-        this.button.addEventListener('click', this.onClickMoreButton());
+        this.button.addEventListener('click', this.onClickMoreButton);
     }
     
     getMoreProducts() {
@@ -38,7 +41,7 @@ export class Products {
     getProductsNum () { }
     
     onClickMoreButton() {
-        return () => {this.getMoreProducts()};
+        this.getMoreProducts();
     }
     onClickElement(target) {
         target = target.closest('.card');
@@ -54,3 +57,5 @@ export class Products {
     }
 
 };
+
+export default Products;

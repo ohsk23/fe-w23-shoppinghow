@@ -1,3 +1,5 @@
+import images from "../images";
+
 export function getCardTemplate ({href, title, subtitle, badge}, id) {
         return `<div class="card" id="${id}">
         <img class="card__image" src="${href}">
@@ -8,7 +10,7 @@ export function getCardTemplate ({href, title, subtitle, badge}, id) {
             ${subtitle}
         </div>
         <div class="card__badge">
-            ${(badge === '테마' ? `<img src="images/thema-icon.png">`: badge)}
+            ${(badge === '테마' ? `<img src="${images.themaIcon}">`: badge)}
         </div>
     </div>`
 }
