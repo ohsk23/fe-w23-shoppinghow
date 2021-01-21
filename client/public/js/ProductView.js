@@ -1,5 +1,5 @@
 import API from '../utils/api.js';
-import CustomDomAPI from '../utils/CustomDomAPI.js';
+import dapi from '../utils/CustomDomAPI.js';
 import CardTemplate from './card.js';
 
 class ProductView {
@@ -12,8 +12,8 @@ class ProductView {
     }
     
     init() {        
-        this.htmlElement = CustomDomAPI.querySelector('.products');
-        this.button = CustomDomAPI.querySelector('.more-button');
+        this.htmlElement = dapi.querySelector('.products');
+        this.button = dapi.querySelector('.more-button');
         this.getProducts();
         this.htmlElement.addEventListener('click', this.onClickElement);
         this.button.addEventListener('click', this.onClickMoreButton);

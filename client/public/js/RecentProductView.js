@@ -1,8 +1,8 @@
-import CustomDomAPI from "../utils/CustomDomAPI";
+import dapi from "../utils/CustomDomAPI";
 
 const RecentProductView = (function(){
-    const recentProductsEle = CustomDomAPI.querySelector('.recent-products-panel');
-    const recentProductsButton = CustomDomAPI.querySelector(".main-navbar--right__recent-products");
+    const recentProductsEle = dapi.querySelector('.recent-products-panel');
+    const recentProductsButton = dapi.querySelector(".main-navbar--right__recent-products");
     const CLASSNAME_VISIBLE = "visible"
     
     function init() {

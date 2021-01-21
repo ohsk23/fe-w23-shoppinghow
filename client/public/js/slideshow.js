@@ -1,5 +1,10 @@
 import API from "../utils/api";
-import CustomDomAPI from "../utils/CustomDomAPI";
+import dapi from "../utils/CustomDomAPI";
+
+const ACTIVE_PREV = "active-prev";
+const ACTIVE_NEXT = "active-next";
+const VISIBLE = "visible";
+const NON_VISIBLE = "non-visible";
 
 let currentSlideIdx = 0;
 const slide = ({url}) => {
@@ -32,11 +37,12 @@ function onClickNext() {
         currentSlideIdx += 1;
         nonVisibleGroup.innerHTML = innerHTML;
     
-        // show transform tansition
-        visibleGroup.className = "group visible active-next";
+        visibleGroup.classList.add(ACTIVE_NEXT);
+        // TODO: transitionend event로 refactoring
         setTimeout(()=> {
-            nonVisibleGroup.className = "group visible";
-            visibleGroup.className = "group non-visible"
+            visibleGroup.classList.remove(ACTIVE_NEXT);
+            nonVisibleGroup.classList.replace(NON_VISIBLE, VISIBLE);
+            visibleGroup.classList.replace(VISIBLE, NON_VISIBLE);
         }, 300);
     })
 }
@@ -53,8 +59,14 @@ function onClickPrev() {
         }
         currentSlideIdx += 2;
         nonVisibleGroup.innerHTML = innerHTML;
-    
-        // show transform tansition
+        
+        visibleGroup.classList.add(ACTIVE_PREV);
+        setTimeout(()=> {
+            visibleGroup.classList.remove(ACTIVE_PREV);
+            nonVisibleGroup.classList.replace(NON_VISIBLE, VISIBLE);
+            visibleGroup.classList.replace(VISIBLE, NON_VISIBLE);
+        }, 300);
+
         visibleGroup.className = "group visible active-prev";
         setTimeout(()=> {
             nonVisibleGroup.className = "group visible";
@@ -64,8 +76,8 @@ function onClickPrev() {
 }
 
 export function initSlideshow() {
-    const nextButton = CustomDomAPI.querySelector('.right-icon');
-    const prevButton = CustomDomAPI.querySelector('.left-icon');
+    const nextButton = dapi.querySelector('.right-icon');
+    const prevButton = dapi.querySelector('.left-icon');
     setInitialContents();
     nextButton.addEventListener('click', () => {
         onClickNext();
