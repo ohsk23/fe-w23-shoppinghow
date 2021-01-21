@@ -1,7 +1,9 @@
 import CategoryNavbarManager from './public/js/CategoryNavbar.js';
 import ProductView from './public/js/ProductView.js';
 import { initSlideshow } from './public/js/slideshow.js';
+import RecentProductView from './public/js/RecentProductView.js';
 import './public/css/normalize.css';
+import './public/css/default.css';
 import './public/css/index.css';
 import './public/css/card.css';
 import './public/css/products.css';
@@ -12,6 +14,7 @@ function initProject() {
     initSlideshow();
     const products = new ProductView();
     const categoryNav = new CategoryNavbarManager();
+    RecentProductView.init();
 }
 
 initProject();
