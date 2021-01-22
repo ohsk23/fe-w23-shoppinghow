@@ -7,7 +7,8 @@ const ACTIVE_NEXT = "active-next";
 const VISIBLE = "visible";
 const NON_VISIBLE = "non-visible";
 
-const config = {
+const defaultConfig = {
+    containerClassName: 'slideshow',
     prevButtonClassName: 'prev-button',
     nextButtonClassName: 'next-button',
     /**
@@ -17,11 +18,18 @@ const config = {
     /**
      * 한 번에 업데이트되는 슬라이드 개수
      */
-    updateSlideNum: 1
+    updateSlideNum: 1,
+    dataFetchFunction: API.getBannerCarouselData,
+    getSlideTemplate({url}) {        
+        return `<div class="slide">
+            <img src="${url}">
+        </div>`;
+    },
 }
 
 class SlideShowView {
-    constructor() {
+    constructor(config = defaultConfig) {
+        this.config = config;
         this.slideHtmls = [];
         this.currentSlideIdx = 0;
         this.onClickPrev = this.onClickPrev.bind(this);
@@ -30,11 +38,12 @@ class SlideShowView {
     }
     
     async init() {
-        this.element = document.querySelector('.slideshow');
-        this.visibleGroup = document.querySelector('.slideshow > .visible');
-        this.nonVisibleGroup = document.querySelector('.slideshow > .non-visible');
-        this.prevButton = dapi.querySelector("." + config.prevButtonClassName);
-        this.nextButton = dapi.querySelector("." + config.nextButtonClassName);
+        const {prevButtonClassName, nextButtonClassName, containerClassName} = this.config;
+        this.element = dapi.querySelector(`.${containerClassName}`);
+        this.visibleGroup = dapi.querySelector(`.${VISIBLE}`, this.element);
+        this.nonVisibleGroup = dapi.querySelector(`.${NON_VISIBLE}`, this.element);
+        this.prevButton = dapi.querySelector(`.${prevButtonClassName}`, this.element);
+        this.nextButton = dapi.querySelector(`.${nextButtonClassName}`, this.element);
 
         await this.getBannerCarouselData();
         this.initialRender();
@@ -43,9 +52,9 @@ class SlideShowView {
     }
 
     async getBannerCarouselData() {
-        const res = await API.getBannerCarouselData();
+        const res = await this.config.dataFetchFunction();
         res.data.forEach((slide) => {
-            this.slideHtmls.push(this.getSlideTemplate(slide));
+            this.slideHtmls.push(this.config.getSlideTemplate(slide));
         });
     }
 
@@ -60,22 +69,17 @@ class SlideShowView {
      * @param {Number} cur 
      */
     renderSlides (cur) {
+        const {slideNumPerPage, updateSlideNum} = this.config;
         let innerHTML = "";
-        for (let i = 0; i < config.slideNumPerPage + 2 * config.updateSlideNum; i++) {
-            let index = cur + i - config.updateSlideNum;
-            index = index % (config.slideNumPerPage + 2 * config.updateSlideNum)
+        for (let i = 0; i < slideNumPerPage + 2 * updateSlideNum; i++) {
+            let index = cur + i - updateSlideNum;
+            index = index % (slideNumPerPage + 2 * updateSlideNum)
             if (index < 0) {
-                index = index + config.slideNumPerPage + 2 * config.updateSlideNum;
+                index = index + slideNumPerPage + 2 * updateSlideNum;
             }
             innerHTML += this.slideHtmls[index];
         }
         return innerHTML;
-    }
-
-    getSlideTemplate({url}) {        
-        return `<div class="slide">
-            <img src="${url}">
-        </div>`;
     }
 
     switchGroupVisibility() {
