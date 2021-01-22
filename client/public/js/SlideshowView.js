@@ -1,3 +1,4 @@
+import images from "../images";
 import API from "../utils/api";
 import dapi from "../utils/CustomDomAPI";
 
@@ -7,6 +8,8 @@ const VISIBLE = "visible";
 const NON_VISIBLE = "non-visible";
 
 const config = {
+    prevButtonClassName: 'prev-button',
+    nextButtonClassName: 'next-button',
     /**
      * 한 번에 보여주는 슬라이드 개수
      */
@@ -27,16 +30,16 @@ class SlideShowView {
     }
     
     async init() {
+        this.element = document.querySelector('.slideshow');
         this.visibleGroup = document.querySelector('.slideshow > .visible');
         this.nonVisibleGroup = document.querySelector('.slideshow > .non-visible');
+        this.prevButton = dapi.querySelector("." + config.prevButtonClassName);
+        this.nextButton = dapi.querySelector("." + config.nextButtonClassName);
+
         await this.getBannerCarouselData();
         this.initialRender();
-
-        const prevButton = dapi.querySelector('.left-icon');
-        prevButton.addEventListener('click', this.onClickPrev);
-
-        const nextButton = dapi.querySelector('.right-icon');
-        nextButton.addEventListener('click', this.onClickNext);
+        this.prevButton.addEventListener('click', this.onClickPrev);
+        this.nextButton.addEventListener('click', this.onClickNext);
     }
 
     async getBannerCarouselData() {
@@ -47,6 +50,8 @@ class SlideShowView {
     }
 
     initialRender() {
+        this.prevButton.innerHTML = `<img class="banner__panel__slideshow__left-icon left-icon" src="${images.leftArrowIcon}"></img>`
+        this.nextButton.innerHTML = `<img class="banner__panel__slideshow__right-icon right-icon" src="${images.rightArrowIcon}"></img>`
         this.visibleGroup.innerHTML = this.renderSlides(this.currentSlideIdx);
     }
     
